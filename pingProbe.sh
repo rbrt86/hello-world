@@ -32,15 +32,16 @@ prereq () {
 runPing () {
 while [ 1 -eq 1 ]; do
   ## if -s is added, do not show ouptut
-    if [ "${verbose}" = "true" ]; then
-      output=$(curl -s $url)
-    else
-      output=$(curl -s -o /dev/null -w "%{http_code}" $url)
-    fi
-  if [ ${output} -eq 200 ]; then
-    echo "."
+  if [ "${verbose}" = "true" ]; then
+    output=$(curl -s $url)
   else
-    echo "ERROR ${output}"
+    output=$(curl -s -o /dev/null -w "%{http_code}" $url)
+
+    if [ ${output} -eq 200 ]; then
+      echo "."
+    else
+      echo "ERROR ${output}"
+    fi
   fi
   sleep ${sleep}
 done
