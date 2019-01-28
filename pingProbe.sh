@@ -34,6 +34,7 @@ while [ 1 -eq 1 ]; do
   ## if -s is added, do not show ouptut
   if [ "${verbose}" = "true" ]; then
     output=$(curl -s $url)
+    echo ${output}
   else
     output=$(curl -s -o /dev/null -w "%{http_code}" $url)
 
